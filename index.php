@@ -8,4 +8,5 @@ require 'config/paths.php';
 require 'config/db.php';
 
 $app = new Main();
+$app->_init();
 
