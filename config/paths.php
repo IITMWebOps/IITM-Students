@@ -1,3 +1,3 @@
 <?php
 
-define(URL, "http://localhost/IITM-Students");
+define(URL, "http://localhost/");
