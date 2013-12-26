@@ -110,7 +110,6 @@ class Main {
     private function _error() {
         require($this->_controllerPath . $this->_errorController . '.php');
         $this->_controller = new $this->_errorController();
-        exit;
     }
 
 }
