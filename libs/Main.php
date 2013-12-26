@@ -1,5 +1,7 @@
 <?php
 
+@session_start();
+
 class Main {
     /* link
      * http://url/Controller/Method/Parameter1/Parameter2/Parameter3/
@@ -13,6 +15,8 @@ class Main {
     private $_errorController = 'error';
     private $_profileController = 'profile';
     private $_profileMethod = 'student';
+
+    
 
     public function _init() {
         $this->_getUrl();
@@ -55,6 +59,7 @@ class Main {
         }
         require($this->_controllerPath . $this->_profileController . '.php');
         $this->_controller = new $this->_profileController();
+        $this->_controller->loadModel('profile', $this->_modelPath);
     }
 
     private function _callProfileMethod() {
@@ -66,8 +71,9 @@ class Main {
         if (file_exists($file)) {
             require($file);
             $this->_controller = new $this->_url[0];
+            $this->_controller->loadModel($this->_url[0], $this->_modelPath);
         } else {
-            $this->_error();
+            $this->_error(404);
             return FALSE;
         }
     }
@@ -85,7 +91,7 @@ class Main {
         $length = count($this->_url);
         if ($length > 1) {
             if (!method_exists($this->_controller, $this->_url[1])) {
-                $this->_error();
+                $this->_error(404);
                 return FALSE;
             }
         }
@@ -107,9 +113,10 @@ class Main {
         }
     }
 
-    private function _error() {
+    private function _error($code) {
         require($this->_controllerPath . $this->_errorController . '.php');
-        $this->_controller = new $this->_errorController();
+        $this->_controller = new $this->_errorController($code);
+        exit;
     }
 
 }

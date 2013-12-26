@@ -6,6 +6,7 @@ html,body{
     overflow-x: hidden;
     height:100%
 }
+
 #header-container{
     background:#F1F1F1;
     padding:0px;
@@ -32,12 +33,15 @@ html,body{
     box-shadow: 0 -3px 5px cornflowerblue;
 
 }
+#main-container, #right-container, #left-container{
+    padding:55px 0px 55px 0px;
+}
 #main-container{
     display:block;
     position: relative;
     //top:50px;
     background:grey;
-    padding:50px 0px 50px 0px;
+
     height:auto;
     min-height: 75%;
 }
@@ -86,4 +90,21 @@ a:hover{
 }
 a:visited{
     color:black;
+}
+
+input{
+
+    display:block;
+    margin:0 5px 5px 5px;
+    width:210px;
+    font-size:14px;
+    border:1px solid #E9E9E9;
+    border-radius:2px;
+    -o-border-radius:2px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    padding:8px;
+}
+input[type=submit]{
+    visibility:hidden;
 }

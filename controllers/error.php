@@ -2,12 +2,13 @@
 
 class Error extends Controller {
 
-    function __Construct() {
+    function __Construct($code) {
         parent::__construct();
-    }
-
-    public function Index() {
-        echo "error";
+        $this->view->errorcode = $code;
+        $this->view->title = $code . ' error';
+        $this->view->render('header');
+        $this->view->render('error/error_view');
+        $this->view->render('footer');
     }
 
 }
