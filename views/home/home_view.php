@@ -12,4 +12,6 @@
 </script>
 
 <?php
+$this->render('header');
 echo $this->title;
+$this->render('footer');
