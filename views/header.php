@@ -23,7 +23,7 @@
         <div id='right-container'><?php
             if (Session::get('loggedIn')) {
                 $this->rollno = Session::get('username');
-                $this->render('profile/profile_view');
+                $this->render('profile/profile_div');
                 echo '</br>';
                 echo "<a href='" . URL . "logout" . "'>Logout</a>";
             } else {

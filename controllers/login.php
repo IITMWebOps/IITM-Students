@@ -11,9 +11,7 @@ class Login extends Controller {
             header('location:./');
         }
         $this->view->title = 'Login';
-        $this->view->render('header');
-        $this->view->render('login/login_form');
-        $this->view->render('footer');
+        $this->view->render('login/login_view');
     }
 
     function submit() {

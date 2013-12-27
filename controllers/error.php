@@ -6,9 +6,7 @@ class Error extends Controller {
         parent::__construct();
         $this->view->errorcode = $code;
         $this->view->title = $code . ' error';
-        $this->view->render('header');
         $this->view->render('error/error_view');
-        $this->view->render('footer');
     }
 
 }
