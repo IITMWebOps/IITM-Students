@@ -15,17 +15,20 @@ class Login_Model extends Model {
         $password = mysql_real_escape_string($password);
         $username = strtolower($username);
 
-        $sql = "SELECT * FROM ".DB_USERS_TABLE." WHERE username='$username'";
-
-        $login = mysql_query($sql);
-        $count = mysql_num_rows($login);
+        $sql = "SELECT * FROM " . DB_USERS_TABLE . " WHERE username='$username'";
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        $data = $sth->fetch(PDO::FETCH_ASSOC);
+        $count = $sth->rowCount();
 
         if ($count > 0) {
-            $row = mysql_fetch_array($login);
-            if (crypt($password, $row['encrypted_password']) == $row['encrypted_password']) {
+            if (crypt($password, $data['encrypted_password']) == $data['encrypted_password']) {
+                $user = $data;
+                unset($user['encrypted_password']);
                 Session::init();
                 Session::set('loggedIn', true);
-                Session::set('username', $username);
+                Session::set('user', $user);
+                Session::set('username', $user['username']);
                 header('location:../');
             } else {
                 header('location:../login');

@@ -16,8 +16,6 @@ class Main {
     private $_profileController = 'profile';
     private $_profileMethod = 'student';
 
-    
-
     public function _init() {
         $this->_getUrl();
         if (empty($this->_url[0])) {
